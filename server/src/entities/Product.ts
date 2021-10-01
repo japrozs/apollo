@@ -10,6 +10,7 @@ import {
     OneToMany,
 } from "typeorm";
 import { Review } from "./Review";
+import { Suggestion } from "./Suggestion";
 import { User } from "./User";
 
 @ObjectType()
@@ -30,9 +31,9 @@ export class Product extends BaseEntity {
     })
     imgUrl: string;
 
-    @Field(() => [String])
-    @Column("simple-array", { nullable: true })
-    suggestions: string[];
+    @Field(() => [Suggestion])
+    @OneToMany(() => Suggestion, (suggestion) => suggestion.product)
+    suggestions: Suggestion[];
 
     @Field()
     @Column({ default: "" })

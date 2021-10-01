@@ -50,22 +50,27 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                             _active={{
                                 backgroundColor: "gray.100",
                             }}
+                            className={"menu_button"}
                             border="1px solid lightgray"
                             as={Button}
                             rightIcon={<ChevronDownIcon />}
                         >
                             {data?.me.name}
                         </MenuButton>
-                        <MenuList>
+                        <MenuList className={"menu_list"}>
                             <NextLink href="/pref">
-                                <MenuItem fontWeight="medium">
+                                <MenuItem
+                                    fontWeight="medium"
+                                    className={"menu_item"}
+                                >
                                     Settings
                                 </MenuItem>
                             </NextLink>
-                            <MenuDivider />
+                            <MenuDivider className={"menu_divider"} />
                             <MenuItem
+                                className={"menu_item"}
                                 fontWeight="medium"
-                                color={"red.500"}
+                                style={{ color: "var(--red-500)" }}
                                 onClick={async () => {
                                     logout();
                                     await client.resetStore();

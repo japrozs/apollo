@@ -1,6 +1,12 @@
 .product_page_container {
     padding: 20px;
     min-height: 100vh;
+    max-width: 65vw;
+}
+
+.product_page_right {
+    max-width: 35vw;
+    margin: 10px;
 }
 
 .product_page_info {
@@ -16,6 +22,7 @@
 .product_page_info h1 {
     font-size: 40px;
     font-weight: 600;
+    margin-bottom: -3px;
 }
 
 .product_page_info>div {
@@ -104,4 +111,17 @@ h6 {
 .product_page_description a *,
 a {
     color: #1e76da;
+}
+
+@media only screen and (max-width: 982px) {
+    .product_page_right {
+        display: none;
+    }
+    .product_page_container {
+        padding: 10px;
+        max-width: 97vw;
+    }
+    .product_page_description {
+        max-width: 97vw !important;
+    }
 }

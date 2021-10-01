@@ -1,0 +1,7 @@
+mutation createReview($body: String!, $title: String!, $productId: Int!) {
+    createReview(body: $body, title: $title, productId: $productId) {
+        id
+        title
+        body
+    }
+}

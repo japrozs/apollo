@@ -26,3 +26,44 @@
 .navbar_option:hover {
     background-color: #f8f4f0;
 }
+
+.menu_button {
+    background-color: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 7px;
+    font-size: 16px;
+}
+
+.menu_button:hover {
+    background-color: #f8f4f0;
+}
+
+.menu_list {
+    background-color: white;
+    border: 1px solid var(--gray-100);
+    width: 134px;
+    border-radius: 4px;
+}
+
+.menu_item {
+    background-color: white;
+    width: 300px;
+    border: none;
+    cursor: pointer;
+    box-shadow: none;
+    padding: 10px 10px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.menu_item:hover {
+    background-color: var(--gray-50);
+}
+
+.menu_divider {
+    margin: 0px;
+    border-top: red;
+}

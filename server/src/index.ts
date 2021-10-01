@@ -18,6 +18,7 @@ import { Review } from "./entities/Review";
 import { ProductResolver } from "./resolvers/product";
 import { ReviewResolver } from "./resolvers/review";
 import { Notification } from "./entities/Notification";
+import { Suggestion } from "./entities/Suggestion";
 
 // rerun
 const main = async () => {
@@ -27,7 +28,7 @@ const main = async () => {
         logging: true,
         migrations: [path.join(__dirname, "./migrations/*")],
         synchronize: true, // set to false, when wiping the data (i.e. await Post.delete({}); )
-        entities: [User, Product, Review, Notification],
+        entities: [User, Product, Review, Notification, Suggestion],
     });
     conn.runMigrations();
     const app = express();

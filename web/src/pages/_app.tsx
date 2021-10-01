@@ -5,6 +5,7 @@ import "../styles/components/InputField.css";
 import "../styles/components/Button.css";
 import "../styles/components/ProductCard.css";
 import "../styles/components/NotifCard.css";
+import "../styles/components/ReviewComponentBox.css";
 import "../styles/modules/MiddleSection.css";
 import "../styles/modules/RightSection.css";
 import "../styles/modules/LeftSection.css";

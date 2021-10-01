@@ -5,19 +5,23 @@ type InputFieldProps = InputHTMLAttributes<HTMLInputElement> & {
     name: string;
     label: string;
     textarea?: boolean;
+    hideLabel?: boolean;
 };
 
 export const InputField: React.FC<InputFieldProps> = ({
     label,
+    hideLabel,
     size: _,
     ...props
 }) => {
     const [field, { error }] = useField(props as any);
     return (
         <div className={"input__container"}>
-            <label className={"input__label"} htmlFor={field.name}>
-                {label}
-            </label>
+            {!hideLabel && (
+                <label className={"input__label"} htmlFor={field.name}>
+                    {label}
+                </label>
+            )}
             <input
                 style={{ borderColor: !!error ? "red" : "" }}
                 className={"input"}

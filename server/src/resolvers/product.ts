@@ -17,6 +17,7 @@ import { validateProduct } from "../utils/validateProduct";
 import { FieldError } from "./user";
 import { Notification } from "../entities/Notification";
 import { User } from "../entities/User";
+import { Review } from "../entities/Review";
 
 @ObjectType()
 class ProductResponse {
@@ -61,10 +62,21 @@ export class ProductResolver {
 
     @Query(() => Product)
     async getProduct(@Arg("id", () => Int!) id: number) {
-        return Product.findOne({
+        const prod = await Product.findOne({
             where: { id },
-            relations: ["reviews", "creator", "reviews.creator"],
+            relations: ["creator"],
         });
+        const prod_reviews = Review.find({
+            where: {
+                productId: prod?.id,
+            },
+            relations: ["creator"],
+            order: {
+                createdAt: "DESC",
+            },
+        });
+
+        return { ...prod, reviews: prod_reviews };
     }
 
     @UseMiddleware(isAuth)
@@ -95,26 +107,6 @@ export class ProductResolver {
             { id: prod?.id },
             {
                 tags: [...(prod?.tags ? prod?.tags : []), tag],
-            }
-        );
-        return true;
-    }
-
-    @Mutation(() => Boolean)
-    @UseMiddleware(isAuth)
-    async addProductSuggestions(
-        @Arg("suggestion", () => String) suggestion: string,
-        @Arg("id", () => Int!) id: number
-    ) {
-        const prod = await Product.findOne(id);
-
-        await Product.update(
-            { id: prod?.id },
-            {
-                suggestions: [
-                    ...(prod?.suggestions ? prod?.suggestions : []),
-                    suggestion,
-                ],
             }
         );
         return true;

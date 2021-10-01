@@ -11,6 +11,7 @@ import {
 import { Notification } from "./Notification";
 import { Product } from "./Product";
 import { Review } from "./Review";
+import { Suggestion } from "./Suggestion";
 
 @ObjectType()
 @Entity()
@@ -57,6 +58,10 @@ export class User extends BaseEntity {
     @Field(() => [Review])
     @OneToMany(() => Review, (review) => review.creator)
     reviews: Review[];
+
+    @Field(() => [Suggestion])
+    @OneToMany(() => Suggestion, (suggestion) => suggestion.creator)
+    suggestions: Suggestion[];
 
     @Column()
     password!: string;
