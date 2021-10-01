@@ -1,0 +1,41 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --watchAll",
+        "watch": "tsc -w",
+        "build": "tsc",
+        "dev": "nodemon dist/index.js",
+        "gen-env": "gen-env-types .env -o src/env.d.ts -e ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/connect-redis": "^0.0.17",
+        "@types/ioredis": "^4.27.4",
+        "@types/node": "^16.10.1",
+        "@types/nodemailer": "^6.4.4",
+        "@types/uuid": "^8.3.1",
+        "nodemon": "^2.0.13",
+        "typescript": "^4.4.3"
+    },
+    "dependencies": {
+        "apollo-server-express": "2.25.0",
+        "argon2": "^0.28.2",
+        "connect-redis": "^6.0.0",
+        "dotenv-safe": "^8.2.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.2",
+        "gen-env-types": "^1.3.0",
+        "ioredis": "^4.27.9",
+        "nodemailer": "^6.6.5",
+        "pg": "^8.7.1",
+        "redis": "^3.1.2",
+        "type-graphql": "^1.1.1",
+        "typeorm": "^0.2.37",
+        "uuid": "^8.3.2"
+    }
+}

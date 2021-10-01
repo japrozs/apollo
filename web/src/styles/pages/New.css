@@ -1,0 +1,13 @@
+.new_product_container {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    padding: 20px;
+}
+
+.new_product_header {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+}

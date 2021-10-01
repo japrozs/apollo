@@ -1,0 +1,10 @@
+.right_section_container {
+    padding: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.right_section_container>h1 {
+    font-size: 25px;
+    font-weight: 600;
+}

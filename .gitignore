@@ -1,0 +1,8 @@
+**/dist
+**/node_modules
+**/.env.
+**/.env.example
+**/.env.production
+
+# Debug logs
+**/yarn-debug.log

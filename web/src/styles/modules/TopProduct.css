@@ -1,0 +1,8 @@
+.top_product_container {
+    background-color: var(--gray-50);
+    margin-top: 20px;
+    border: 1px solid var(--gray-200);
+    border-radius: 3px;
+    padding: 10px;
+    cursor: pointer;
+}

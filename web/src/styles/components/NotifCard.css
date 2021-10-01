@@ -1,0 +1,28 @@
+.notif_card_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.notification_image {
+    border-radius: 999px;
+    width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    min-width: 30px !important;
+    max-height: 30px !important;
+    max-width: 30px !important;
+}
+
+.notif_body {
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+.notif_card_container:hover {
+    background-color: var(--gray-50);
+}

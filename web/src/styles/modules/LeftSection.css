@@ -1,0 +1,10 @@
+.left_section_wrapper {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+
+.left_section_wrapper>h1 {
+    font-size: 25px;
+    font-weight: 600;
+}

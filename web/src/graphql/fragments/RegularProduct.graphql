@@ -1,0 +1,30 @@
+fragment RegularProduct on Product {
+    id
+    name
+    imgUrl
+    description
+    tagLine
+    productUrl
+    rating
+    tags
+    creatorId
+    private
+    creator {
+        ...RegularUser
+    }
+    reviews {
+        id
+        title
+        body
+        creatorId
+        productId
+        creator {
+            ...RegularUser
+        }
+        createdAt
+        updatedAt
+    }
+    createdAt
+    updatedAt
+    __typename
+}

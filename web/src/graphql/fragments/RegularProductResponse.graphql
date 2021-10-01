@@ -1,0 +1,9 @@
+fragment RegularProductResponse on ProductResponse {
+    errors {
+        ...RegularError
+    }
+    product {
+        id
+        name
+    }
+}
