@@ -1,22 +1,23 @@
 {
-  "name": "root",
-  "scripts": {
-    "test": "lerna run test --scope=@huddle/server",
-    "version": "lerna version --conventional-commits --yes",
-    "diff": "lerna diff",
-    "since": "lerna run test --since",
-    "build": "lerna run build --scope={@huddle/server,@huddle/app}",
-    "changed": "lerna changed packages/server"
-  },
-  "private": true,
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  },
-  "dependencies": {
-    "@chakra-ui/react": "^1.6.8",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "framer-motion": "^4",
-    "react-dom": "^17.0.2"
-  }
+    "name": "root",
+    "scripts": {
+        "test": "lerna run test --scope=@huddle/server",
+        "version": "lerna version --conventional-commits --yes",
+        "diff": "lerna diff",
+        "since": "lerna run test --since",
+        "build": "lerna run build --scope={@huddle/server,@huddle/app}",
+        "changed": "lerna changed packages/server",
+        "bootstrap": "lerna run bootstrap"
+    },
+    "private": true,
+    "devDependencies": {
+        "lerna": "^4.0.0"
+    },
+    "dependencies": {
+        "@chakra-ui/react": "^1.6.8",
+        "@emotion/react": "^11",
+        "@emotion/styled": "^11",
+        "framer-motion": "^4",
+        "react-dom": "^17.0.2"
+    }
 }
