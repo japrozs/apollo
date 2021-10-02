@@ -64,7 +64,7 @@ export class ProductResolver {
     async getProduct(@Arg("id", () => Int!) id: number) {
         const prod = await Product.findOne({
             where: { id },
-            relations: ["creator"],
+            relations: ["creator", "suggestions"],
         });
         const prod_reviews = Review.find({
             where: {

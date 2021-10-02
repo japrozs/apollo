@@ -12,7 +12,7 @@ export const code: keyof JSX.IntrinsicElements | CodeComponent = ({
 }) => {
     const match = /language-(\w+)/.exec(className || "");
     console.log("className ::", className);
-    console.log("props ::", props);
+    console.log("node ::", props.node);
     return !inline && match ? (
         //@ts-ignore
         <SyntaxHighlighter
@@ -24,7 +24,7 @@ export const code: keyof JSX.IntrinsicElements | CodeComponent = ({
             {...props}
         />
     ) : (
-        <code className={className} {...props}>
+        <code className={"apollo-code-inline"} {...props}>
             {children}
         </code>
     );

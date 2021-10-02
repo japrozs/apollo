@@ -48,6 +48,9 @@ const ProductPage: React.FC<ProductPageProps> = ({}) => {
                         <p style={{ marginTop: 5, color: "var(--gray-500)" }}>
                             Created by @{data.getProduct.creator.username}
                         </p>
+                        <div className={"product_feature_suggestions"}>
+                            <h1>Feature suggestions</h1>
+                        </div>
                         <h1 className={"product_page_description_header"}>
                             Description
                         </h1>

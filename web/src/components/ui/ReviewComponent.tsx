@@ -21,6 +21,7 @@ export const ReviewComponent: React.FC<ReviewComponentProps> = ({
     const { data, loading } = useMeQuery();
     const [createReview] = useCreateReviewMutation();
     const client = useApolloClient();
+    console.log(product);
     return (
         <div className={"review_box"}>
             <h1>💬 Reviews</h1>
@@ -110,6 +111,16 @@ export const ReviewComponent: React.FC<ReviewComponentProps> = ({
                             {timeSinceShort(rev.createdAt)}
                         </p>
                     </div>
+                    <p
+                        style={{
+                            fontSize: "19px",
+                            fontWeight: 500,
+                            marginTop: "7px",
+                            color: "var(--gray-900)",
+                        }}
+                    >
+                        {rev.title}
+                    </p>
                     <p className={"review_card_body"}>{rev.body}</p>
                 </div>
             ))}
