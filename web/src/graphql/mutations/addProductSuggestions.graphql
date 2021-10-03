@@ -1,0 +1,3 @@
+mutation addProductSuggestions($id: Int!, $suggestions: String!) {
+    addProductSuggestions(id: $id, suggestions: $suggestions)
+}

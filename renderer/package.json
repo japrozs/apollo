@@ -1,5 +1,5 @@
 {
-    "name": "@apollo/renderer",
+    "name": "@apollo-web/renderer",
     "version": "1.0.0",
     "description": "",
     "main": "build/dist/index.js",

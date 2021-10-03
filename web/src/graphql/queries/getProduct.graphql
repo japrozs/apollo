@@ -1,14 +1,5 @@
 query getProduct($id: Int!) {
     getProduct(id: $id) {
         ...RegularProduct
-        suggestions{
-            id
-            feature
-            creator{
-                id
-                email
-                username
-            }
-        }
     }
 }

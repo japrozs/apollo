@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { code } from "./components/code";
 
-// import rehypeRaw from "rehype-raw";
+import rehypeRaw from "rehype-raw";
 // import rehypeSanitize from "rehype-sanitize";
 // import rehypeHighlight from "rehype-highlight";
 
@@ -17,9 +17,16 @@ const Index: React.FC<indexProps> = ({ markdown }) => {
         <>
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
                 components={{
                     blockquote({ node, className, children, ...props }) {
-                        return <blockquote>{children}</blockquote>;
+                        return (
+                            <blockquote
+                                className={"apollo-web-renderer-blockquote"}
+                            >
+                                {children}
+                            </blockquote>
+                        );
                     },
                     code,
                 }}

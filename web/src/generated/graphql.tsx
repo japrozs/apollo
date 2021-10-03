@@ -22,6 +22,7 @@ export type FieldError = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addProductSuggestions: Scalars['Boolean'];
   addProductTags: Scalars['Boolean'];
   changePassword: UserResponse;
   createProduct: ProductResponse;
@@ -30,6 +31,12 @@ export type Mutation = {
   login: UserResponse;
   logout?: Maybe<Scalars['Boolean']>;
   register: UserResponse;
+};
+
+
+export type MutationAddProductSuggestionsArgs = {
+  id: Scalars['Int'];
+  suggestions: Scalars['String'];
 };
 
 
@@ -98,7 +105,7 @@ export type Product = {
   productUrl: Scalars['String'];
   rating: Scalars['Float'];
   reviews: Array<Review>;
-  suggestions: Array<Suggestion>;
+  suggestions: Array<Scalars['String']>;
   tagLine: Scalars['String'];
   tags: Array<Scalars['String']>;
   updatedAt: Scalars['String'];
@@ -143,18 +150,6 @@ export type Review = {
   updatedAt: Scalars['String'];
 };
 
-export type Suggestion = {
-  __typename?: 'Suggestion';
-  createdAt: Scalars['String'];
-  creator: User;
-  creatorId: Scalars['Float'];
-  feature: Scalars['String'];
-  id: Scalars['Float'];
-  product: Product;
-  productId: Scalars['Float'];
-  updatedAt: Scalars['String'];
-};
-
 export type User = {
   __typename?: 'User';
   avatarUrl: Scalars['String'];
@@ -166,7 +161,6 @@ export type User = {
   notifications: Array<Notification>;
   products: Array<Product>;
   reviews: Array<Review>;
-  suggestions: Array<Suggestion>;
   theme: Scalars['String'];
   updatedAt: Scalars['String'];
   username: Scalars['String'];
@@ -189,13 +183,21 @@ export type RegularErrorFragment = { __typename?: 'FieldError', field: string, m
 
 export type RegularNotificationFragment = { __typename: 'Notification', id: number, imgUrl: string, body: string, read: boolean, link: string, userId: number, createdAt: string, updatedAt: string };
 
-export type RegularProductFragment = { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> };
+export type RegularProductFragment = { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, suggestions: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> };
 
 export type RegularProductResponseFragment = { __typename?: 'ProductResponse', errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, product?: Maybe<{ __typename?: 'Product', id: number, name: string }> };
 
 export type RegularUserFragment = { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string };
 
 export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, user?: Maybe<{ __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }> };
+
+export type AddProductSuggestionsMutationVariables = Exact<{
+  id: Scalars['Int'];
+  suggestions: Scalars['String'];
+}>;
+
+
+export type AddProductSuggestionsMutation = { __typename?: 'Mutation', addProductSuggestions: boolean };
 
 export type ChangePasswordMutationVariables = Exact<{
   token: Scalars['String'];
@@ -253,17 +255,17 @@ export type GetProductQueryVariables = Exact<{
 }>;
 
 
-export type GetProductQuery = { __typename?: 'Query', getProduct: { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, suggestions: Array<{ __typename?: 'Suggestion', id: number, feature: string, creator: { __typename?: 'User', id: number, email: string, username: string } }>, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> } };
+export type GetProductQuery = { __typename?: 'Query', getProduct: { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, suggestions: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> } };
 
 export type TopProductQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TopProductQuery = { __typename?: 'Query', topProduct: { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> } };
+export type TopProductQuery = { __typename?: 'Query', topProduct: { __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, suggestions: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> } };
 
 export type GetUserProductsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProductsQuery = { __typename?: 'Query', getUserProducts: Array<{ __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> }> };
+export type GetUserProductsQuery = { __typename?: 'Query', getUserProducts: Array<{ __typename: 'Product', id: number, name: string, imgUrl: string, description: string, tagLine: string, productUrl: string, rating: number, tags: Array<string>, suggestions: Array<string>, creatorId: number, private: boolean, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }, reviews: Array<{ __typename?: 'Review', id: number, title: string, body: string, creatorId: number, productId: number, createdAt: string, updatedAt: string, creator: { __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string } }> }> };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -307,6 +309,7 @@ export const RegularProductFragmentDoc = gql`
   productUrl
   rating
   tags
+  suggestions
   creatorId
   private
   creator {
@@ -357,6 +360,38 @@ export const RegularUserResponseFragmentDoc = gql`
 }
     ${RegularErrorFragmentDoc}
 ${RegularUserFragmentDoc}`;
+export const AddProductSuggestionsDocument = gql`
+    mutation addProductSuggestions($id: Int!, $suggestions: String!) {
+  addProductSuggestions(id: $id, suggestions: $suggestions)
+}
+    `;
+export type AddProductSuggestionsMutationFn = Apollo.MutationFunction<AddProductSuggestionsMutation, AddProductSuggestionsMutationVariables>;
+
+/**
+ * __useAddProductSuggestionsMutation__
+ *
+ * To run a mutation, you first call `useAddProductSuggestionsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddProductSuggestionsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addProductSuggestionsMutation, { data, loading, error }] = useAddProductSuggestionsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      suggestions: // value for 'suggestions'
+ *   },
+ * });
+ */
+export function useAddProductSuggestionsMutation(baseOptions?: Apollo.MutationHookOptions<AddProductSuggestionsMutation, AddProductSuggestionsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddProductSuggestionsMutation, AddProductSuggestionsMutationVariables>(AddProductSuggestionsDocument, options);
+      }
+export type AddProductSuggestionsMutationHookResult = ReturnType<typeof useAddProductSuggestionsMutation>;
+export type AddProductSuggestionsMutationResult = Apollo.MutationResult<AddProductSuggestionsMutation>;
+export type AddProductSuggestionsMutationOptions = Apollo.BaseMutationOptions<AddProductSuggestionsMutation, AddProductSuggestionsMutationVariables>;
 export const ChangePasswordDocument = gql`
     mutation changePassword($token: String!, $newPassword: String!) {
   changePassword(token: $token, newPassword: $newPassword) {
@@ -593,15 +628,6 @@ export const GetProductDocument = gql`
     query getProduct($id: Int!) {
   getProduct(id: $id) {
     ...RegularProduct
-    suggestions {
-      id
-      feature
-      creator {
-        id
-        email
-        username
-      }
-    }
   }
 }
     ${RegularProductFragmentDoc}`;

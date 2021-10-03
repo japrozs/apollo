@@ -64,7 +64,7 @@ export class ProductResolver {
     async getProduct(@Arg("id", () => Int!) id: number) {
         const prod = await Product.findOne({
             where: { id },
-            relations: ["creator", "suggestions"],
+            relations: ["creator"],
         });
         const prod_reviews = Review.find({
             where: {
@@ -94,7 +94,7 @@ export class ProductResolver {
     @Mutation(() => Boolean)
     @UseMiddleware(isAuth)
     async addProductTags(
-        @Arg("tag", () => String) tag: string,
+        @Arg("tags", () => String) tags: string,
         @Arg("id", () => Int!) id: number,
         @Ctx() { req }: Context
     ) {
@@ -103,10 +103,39 @@ export class ProductResolver {
             return false;
         }
 
+        const tagArray = tags.split(",");
+
         await Product.update(
             { id: prod?.id },
             {
-                tags: [...(prod?.tags ? prod?.tags : []), tag],
+                tags: tagArray,
+            }
+        );
+        return true;
+    }
+
+    @Mutation(() => Boolean)
+    @UseMiddleware(isAuth)
+    async addProductSuggestions(
+        @Arg("suggestions", () => String) suggestions: string,
+        @Arg("id", () => Int!) id: number,
+        @Ctx() { req }: Context
+    ) {
+        const prod = await Product.findOne(id, { relations: ["creator"] });
+        if (prod?.creator.id !== req.session.userId) {
+            return false;
+        }
+
+        const s = suggestions.split(",");
+
+        s.forEach((a, i) => {
+            s[i] = a.trim();
+        });
+
+        await Product.update(
+            { id: prod?.id },
+            {
+                suggestions: s,
             }
         );
         return true;
@@ -119,7 +148,7 @@ export class ProductResolver {
         let id = -1;
         const prods = await Product.find({ relations: ["reviews"] });
         prods.forEach((prod) => {
-            if (prod.reviews.length > max) {
+            if (prod.reviews.length >= max) {
                 max = prod.reviews.length;
                 id = prod.id;
             }

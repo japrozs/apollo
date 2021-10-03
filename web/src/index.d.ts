@@ -1,1 +1,1 @@
-declare module "@apollo/renderer";
+declare module "@apollo-web/renderer";

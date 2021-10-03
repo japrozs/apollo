@@ -1,4 +1,5 @@
 import React from "react";
+import { Spinner } from "../shared/Spinner";
 
 type ButtonProps = React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
         <>
             {isLoading ? (
                 <button className="button" {...props}>
-                    Loading
+                    <Spinner className={"spinner spinner-in-button"} />
                 </button>
             ) : (
                 <button className="button" {...props}>

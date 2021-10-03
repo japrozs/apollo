@@ -114,7 +114,7 @@ export const ReviewComponent: React.FC<ReviewComponentProps> = ({
                     <p
                         style={{
                             fontSize: "19px",
-                            fontWeight: 500,
+                            fontWeight: 600,
                             marginTop: "7px",
                             color: "var(--gray-900)",
                         }}

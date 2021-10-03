@@ -5,6 +5,7 @@ import "../styles/components/InputField.css";
 import "../styles/components/Button.css";
 import "../styles/components/ProductCard.css";
 import "../styles/components/NotifCard.css";
+import "../styles/components/Spinner.css";
 import "../styles/components/ReviewComponentBox.css";
 import "../styles/modules/MiddleSection.css";
 import "../styles/modules/RightSection.css";
@@ -14,6 +15,7 @@ import "../styles/modules/TopProduct.css";
 import "../styles/shared/Navbar.css";
 import "../styles/product/ProductPage.css";
 import "../styles/pages/New.css";
+import "../styles/pages/Register.css";
 
 const client = new ApolloClient({
     uri: "http://localhost:4000/graphql",

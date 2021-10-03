@@ -1,7 +1,6 @@
 .productcard__container {
     border: 1px solid var(--gray-200);
     border-radius: 2px;
-    cursor: pointer;
     padding: 20px;
     margin-bottom: 10px;
     transition: all 0.01s ease-in-out;
@@ -15,22 +14,26 @@
 .product__image {
     min-width: 45px !important;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .product__name {
     font-size: 30px;
+    cursor: pointer;
     font-weight: 600;
     margin-left: 10px;
 }
 
 .product__tagLine {
     margin: 10px 0px;
+    cursor: pointer;
     font-weight: 500;
     color: var(--gray-600);
 }
 
 .product__info {
     display: flex;
+    cursor: pointer;
     flex-direction: row;
     align-items: center;
 }
@@ -47,6 +50,7 @@
 
 .product_tags_container {
     display: flex;
+    cursor: pointer;
     flex-direction: row;
     align-items: center;
 }
@@ -63,4 +67,10 @@
 
 .product_tag:hover {
     border: 1px solid var(--gray-300);
+}
+
+@media only screen and (max-width: 410px) {
+    .product_tags_container {
+        display: none !important;
+    }
 }

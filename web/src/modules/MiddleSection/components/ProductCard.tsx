@@ -15,12 +15,7 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const router = useRouter();
     return (
-        <div
-            className={"productcard__container"}
-            onClick={() => {
-                router.push(`/product/${product.id}`);
-            }}
-        >
+        <div className={"productcard__container"}>
             <div
                 style={{
                     display: "flex",
@@ -36,22 +31,45 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     width={PRODUCT_IMAGE_WIDTH}
                     height={PRODUCT_IMAGE_HEIGHT}
                     className={"product__image"}
+                    onClick={() => {
+                        router.push(`/product/${product.id}`);
+                    }}
                 />
-                <h1 className={"product__name truncate"}>{product.name}</h1>
+                <h1
+                    className={"product__name truncate"}
+                    onClick={() => {
+                        router.push(`/product/${product.id}`);
+                    }}
+                >
+                    {product.name}
+                </h1>
                 <MoreVertIcon
                     style={{
                         alignSelf: "center",
                         marginLeft: "auto",
                         marginRight: 0,
                         fontSize: 25,
+                        cursor: "pointer",
                     }}
                     onClick={() => {
                         alert("feature to be added");
                     }}
                 />
             </div>
-            <p className={"product__tagLine"}>{product.tagLine}</p>
-            <div className="product__info">
+            <p
+                className={"product__tagLine"}
+                onClick={() => {
+                    router.push(`/product/${product.id}`);
+                }}
+            >
+                {product.tagLine}
+            </p>
+            <div
+                className="product__info"
+                onClick={() => {
+                    router.push(`/product/${product.id}`);
+                }}
+            >
                 {getReviewPreviewList(product.reviews).map((rev) => (
                     <>
                         <Image
@@ -72,7 +90,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         {product.reviews.length} 💬
                     </p>
                 )}
-                <ProductTags product={product} />
+                <div
+                    className={"product_tags_container"}
+                    onClick={() => {
+                        router.push(`/product/${product.id}`);
+                    }}
+                >
+                    <ProductTags product={product} />
+                </div>
             </div>
         </div>
     );

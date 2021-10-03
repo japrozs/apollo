@@ -1,11 +1,14 @@
 import React from "react";
 
-interface SpinnerProps {}
+type SpinnerProps = React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> & {};
 
-export const Spinner: React.FC<SpinnerProps> = ({}) => {
+export const Spinner: React.FC<SpinnerProps> = ({ ...props }) => {
     return (
-        <div>
-            <p>Loading...</p>
+        <div className={"spinner"} {...props}>
+            Loading...
         </div>
     );
 };

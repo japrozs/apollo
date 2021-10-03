@@ -49,14 +49,12 @@ const Login: React.FC<loginProps> = ({}) => {
                                 placeholder="Username or Email"
                                 label="Username or Email"
                             />
-                            <Box mt={4}>
-                                <InputField
-                                    name="password"
-                                    placeholder="Password"
-                                    label="Password"
-                                    type="password"
-                                />
-                            </Box>
+                            <InputField
+                                name="password"
+                                placeholder="Password"
+                                label="Password"
+                                type="password"
+                            />
                             <Flex>
                                 <NextLink href="/forgot-password">
                                     <Link
@@ -81,8 +79,9 @@ const Login: React.FC<loginProps> = ({}) => {
                                 <NextLink href="/register">
                                     <span
                                         style={{
-                                            color: "var(--blue-700)",
+                                            color: "var(--green-500)",
                                             fontWeight: 500,
+                                            cursor: "pointer",
                                         }}
                                     >
                                         Create one

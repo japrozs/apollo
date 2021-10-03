@@ -14,7 +14,7 @@ export default function Home() {
             </Head>
             {data && !loading ? (
                 <>
-                    <pre style={{ fontFamily: "Menlo" }}>
+                    <pre style={{ fontFamily: "Menlo !important" }}>
                         {JSON.stringify(data.me, null, 4)}
                     </pre>
                     <NextLink href="/app" passHref={true}>

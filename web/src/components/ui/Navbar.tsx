@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
     Box,
     Button,
@@ -23,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
     const client = useApolloClient();
     const { data, loading } = useMeQuery();
     const [logout] = useLogoutMutation();
+
     return (
         <div className={"navbar_container"}>
             <NextLink href="/app" passHref={true}>
@@ -34,14 +35,16 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                 style={{
                     display: "flex",
                     flexDirection: "row",
-                    alignSelf: "center",
+                    alignItems: "center",
                     marginLeft: "auto",
                     marginRight: 0,
                 }}
             >
-                <NextLink href="/new" passHref={true}>
-                    <a className={"navbar_option"}>New Product</a>
-                </NextLink>
+                <div style={{ alignSelf: "center !important" }}>
+                    <NextLink href="/new" passHref={true}>
+                        <a className={"navbar_option"}>New Product</a>
+                    </NextLink>
+                </div>
                 {data && !loading && (
                     <Menu>
                         <MenuButton
@@ -50,6 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({}) => {
                             _active={{
                                 backgroundColor: "gray.100",
                             }}
+                            style={{ fontWeight: 500 }}
                             className={"menu_button"}
                             border="1px solid lightgray"
                             as={Button}

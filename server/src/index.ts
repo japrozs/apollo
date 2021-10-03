@@ -18,7 +18,6 @@ import { Review } from "./entities/Review";
 import { ProductResolver } from "./resolvers/product";
 import { ReviewResolver } from "./resolvers/review";
 import { Notification } from "./entities/Notification";
-import { Suggestion } from "./entities/Suggestion";
 
 // rerun
 const main = async () => {
@@ -28,7 +27,7 @@ const main = async () => {
         logging: true,
         migrations: [path.join(__dirname, "./migrations/*")],
         synchronize: true, // set to false, when wiping the data (i.e. await Post.delete({}); )
-        entities: [User, Product, Review, Notification, Suggestion],
+        entities: [User, Product, Review, Notification],
     });
     conn.runMigrations();
     const app = express();
@@ -53,8 +52,9 @@ const main = async () => {
             cookie: {
                 maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
                 httpOnly: true,
-                sameSite: "none",
+                sameSite: "lax",
                 secure: __prod__, // cookie only works in https (turn this off if not using https in production)
+                domain: __prod__ ? ".vercel.app" : undefined,
             },
             saveUninitialized: false,
             secret: process.env.SESSION_SECRET,

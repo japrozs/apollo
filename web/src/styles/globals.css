@@ -160,6 +160,8 @@
     --telegram-700: #006ba1;
     --telegram-800: #005885;
     --telegram-900: #003f5e;
+    --spinner-bg: #171c12;
+    --spinner-fg: #b2bac1;
 }
 
 html,
