@@ -8,9 +8,7 @@
 }
 
 .navbar_logo {
-    font-size: 22px;
-    font-weight: 500;
-    font-family: "Menlo" !important;
+    width: 100px;
 }
 
 .navbar_option {
