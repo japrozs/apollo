@@ -111,6 +111,7 @@ export class ProductResolver {
                 tags: tagArray,
             }
         );
+
         return true;
     }
 
@@ -198,6 +199,13 @@ export class ProductResolver {
         );
 
         const product = await Product.findOne(id);
+
+        await Notification.create({
+            imgUrl: product?.imgUrl,
+            body: `Successfully updated ${product?.name}`,
+            link: `${process.env.WEBSITE_URL}/product/${product?.id}`,
+            userId: req.session.userId,
+        }).save();
 
         return { product };
     }

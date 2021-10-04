@@ -17,6 +17,7 @@ import "../styles/shared/Navbar.css";
 import "../styles/product/ProductPage.css";
 import "../styles/pages/New.css";
 import "../styles/pages/Register.css";
+import "../styles/pages/Pref.css";
 
 const client = new ApolloClient({
     uri: "http://localhost:4000/graphql",

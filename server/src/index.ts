@@ -19,6 +19,7 @@ import { ProductResolver } from "./resolvers/product";
 import { ReviewResolver } from "./resolvers/review";
 import { Notification } from "./entities/Notification";
 import productUpload from "./resolvers/upload/product";
+import profileUpload from "./resolvers/upload/profile";
 
 // rerun
 const main = async () => {
@@ -82,6 +83,7 @@ const main = async () => {
     });
 
     app.use("/", productUpload);
+    app.use("/", profileUpload);
 
     app.listen(parseInt(process.env.PORT), () => {
         console.log("🚀 Server started on localhost:4000");

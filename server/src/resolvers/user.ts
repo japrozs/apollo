@@ -18,6 +18,7 @@ import { sendEmail } from "../utils/sendEmail";
 import { v4 } from "uuid";
 import { getConnection } from "typeorm";
 import { isAuth } from "../middleware/isAuth";
+import { Notification } from "../entities/Notification";
 
 @ObjectType()
 export class FieldError {
@@ -125,14 +126,23 @@ export class UserResolver {
     }
 
     @Query(() => User, { nullable: true })
-    me(@Ctx() { req }: Context) {
+    async me(@Ctx() { req }: Context) {
         // you are not logged in
         if (!req.session.userId) {
             return null;
         }
-        return User.findOne(req.session.userId, {
-            relations: ["notifications"],
+        const user = await User.findOne(req.session.userId);
+        const notifications = await Notification.find({
+            where: { userId: req.session.userId },
+            order: {
+                createdAt: "DESC",
+            },
         });
+
+        return  {
+            ...user,
+            notifications,
+        };
     }
 
     @Mutation(() => UserResponse)
@@ -241,5 +251,64 @@ export class UserResolver {
     @Query(() => [User])
     async getAllUsers() {
         return User.find({});
+    }
+
+    @Mutation(() => UserResponse)
+    @UseMiddleware(isAuth)
+    async updateProfile(
+        @Arg("name") name: string,
+        @Arg("username") username: string,
+        @Arg("email") email: string,
+        @Arg("bio") bio: string,
+        @Ctx() { req }: Context
+    ) {
+        if (username.length <= 2) {
+            return [
+                {
+                    field: "username",
+                    message: "Length must be greater than 2",
+                },
+            ];
+        }
+
+        if (name.trim().length == 0) {
+            return [
+                {
+                    field: "name",
+                    message: "Name cannot be empty",
+                },
+            ];
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+            return [
+                {
+                    field: "email",
+                    message: "Invalid Email",
+                },
+            ];
+        }
+
+        if (username.includes(" ")) {
+            return [
+                {
+                    field: "username",
+                    message: "Username cannot include spaces or @, !, #",
+                },
+            ];
+        }
+
+        await User.update(
+            { id: req.session.userId },
+            {
+                name,
+                username,
+                bio,
+                email,
+            }
+        );
+
+        const user = await User.findOne(req.session.userId);
+        return { user };
     }
 }
