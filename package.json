@@ -7,17 +7,12 @@
         "since": "lerna run test --since",
         "build": "lerna run build --scope={@huddle/server,@huddle/app}",
         "changed": "lerna changed packages/server",
-        "bootstrap": "lerna run bootstrap"
+        "bootstrap": "lerna run bootstrap",
+        "prepare": "husky install"
     },
     "private": true,
     "devDependencies": {
+        "husky": "^7.0.0",
         "lerna": "^4.0.0"
-    },
-    "dependencies": {
-        "@chakra-ui/react": "^1.6.8",
-        "@emotion/react": "^11",
-        "@emotion/styled": "^11",
-        "framer-motion": "^4",
-        "react-dom": "^17.0.2"
     }
 }
