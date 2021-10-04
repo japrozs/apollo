@@ -18,6 +18,7 @@ import { Review } from "./entities/Review";
 import { ProductResolver } from "./resolvers/product";
 import { ReviewResolver } from "./resolvers/review";
 import { Notification } from "./entities/Notification";
+import productUpload from "./resolvers/upload/product";
 
 // rerun
 const main = async () => {
@@ -31,6 +32,7 @@ const main = async () => {
     });
     conn.runMigrations();
     const app = express();
+    app.use("/images", express.static(path.join(__dirname, "../images/")));
 
     const RedisStore = connectRedis(session);
     const redis = new Redis(process.env.REDIS_URL);
@@ -78,6 +80,8 @@ const main = async () => {
         app,
         cors: false,
     });
+
+    app.use("/", productUpload);
 
     app.listen(parseInt(process.env.PORT), () => {
         console.log("🚀 Server started on localhost:4000");

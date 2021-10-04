@@ -31,6 +31,7 @@ export type Mutation = {
   login: UserResponse;
   logout?: Maybe<Scalars['Boolean']>;
   register: UserResponse;
+  updateProduct: ProductResponse;
 };
 
 
@@ -42,7 +43,7 @@ export type MutationAddProductSuggestionsArgs = {
 
 export type MutationAddProductTagsArgs = {
   id: Scalars['Int'];
-  tag: Scalars['String'];
+  tags: Scalars['String'];
 };
 
 
@@ -77,6 +78,14 @@ export type MutationLoginArgs = {
 
 export type MutationRegisterArgs = {
   options: UsernamePasswordInput;
+};
+
+
+export type MutationUpdateProductArgs = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  tagLine: Scalars['String'];
+  tags: Scalars['String'];
 };
 
 export type Notification = {
@@ -249,6 +258,16 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, user?: Maybe<{ __typename: 'User', id: number, name: string, theme: string, email: string, bio: string, username: string, createdAt: string, updatedAt: string, avatarUrl: string }> } };
+
+export type UpdateProductMutationVariables = Exact<{
+  id: Scalars['Int'];
+  tagLine: Scalars['String'];
+  tags: Scalars['String'];
+  name: Scalars['String'];
+}>;
+
+
+export type UpdateProductMutation = { __typename?: 'Mutation', updateProduct: { __typename?: 'ProductResponse', errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, product?: Maybe<{ __typename?: 'Product', id: number, name: string }> } };
 
 export type GetProductQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -624,6 +643,42 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const UpdateProductDocument = gql`
+    mutation updateProduct($id: Int!, $tagLine: String!, $tags: String!, $name: String!) {
+  updateProduct(id: $id, tagLine: $tagLine, tags: $tags, name: $name) {
+    ...RegularProductResponse
+  }
+}
+    ${RegularProductResponseFragmentDoc}`;
+export type UpdateProductMutationFn = Apollo.MutationFunction<UpdateProductMutation, UpdateProductMutationVariables>;
+
+/**
+ * __useUpdateProductMutation__
+ *
+ * To run a mutation, you first call `useUpdateProductMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateProductMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateProductMutation, { data, loading, error }] = useUpdateProductMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      tagLine: // value for 'tagLine'
+ *      tags: // value for 'tags'
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUpdateProductMutation(baseOptions?: Apollo.MutationHookOptions<UpdateProductMutation, UpdateProductMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateProductMutation, UpdateProductMutationVariables>(UpdateProductDocument, options);
+      }
+export type UpdateProductMutationHookResult = ReturnType<typeof useUpdateProductMutation>;
+export type UpdateProductMutationResult = Apollo.MutationResult<UpdateProductMutation>;
+export type UpdateProductMutationOptions = Apollo.BaseMutationOptions<UpdateProductMutation, UpdateProductMutationVariables>;
 export const GetProductDocument = gql`
     query getProduct($id: Int!) {
   getProduct(id: $id) {

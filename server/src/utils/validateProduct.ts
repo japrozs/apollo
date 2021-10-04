@@ -10,13 +10,15 @@ export const validateProduct = (options: ProductInput) => {
         ];
     }
 
-    if (options.description.trim().length == 0) {
-        return [
-            {
-                field: "description",
-                message: "Description cannot be empty",
-            },
-        ];
+    if (options.description) {
+        if (options.description.trim().length == 0) {
+            return [
+                {
+                    field: "description",
+                    message: "Description cannot be empty",
+                },
+            ];
+        }
     }
 
     if (options.tagLine.length <= 2) {

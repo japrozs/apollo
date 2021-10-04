@@ -158,4 +158,47 @@ export class ProductResolver {
             relations: ["reviews", "creator", "reviews.creator"],
         });
     }
+
+    @Mutation(() => ProductResponse)
+    @UseMiddleware(isAuth)
+    async updateProduct(
+        @Arg("name") name: string,
+        @Arg("tagLine") tagLine: string,
+        @Arg("tags") tags: string,
+        @Arg("id", () => Int) id: number,
+        @Ctx() { req }: Context
+    ) {
+        const options = {
+            name,
+            tagLine,
+        };
+        const errors = validateProduct(options);
+        if (errors) {
+            return { errors };
+        }
+
+        const prod = await Product.findOne(id, { relations: ["creator"] });
+        if (prod?.creator.id !== req.session.userId) {
+            return false;
+        }
+
+        const t = tags.split(",");
+
+        t.forEach((tag, i) => {
+            t[i] = tag.trim();
+        });
+
+        await Product.update(
+            { id },
+            {
+                name,
+                tagLine,
+                tags: t,
+            }
+        );
+
+        const product = await Product.findOne(id);
+
+        return { product };
+    }
 }

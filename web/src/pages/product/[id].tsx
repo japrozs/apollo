@@ -13,12 +13,14 @@ import { Form, Formik } from "formik";
 import { InputField } from "../../components/ui/InputField";
 import { Button } from "../../components/ui/Button";
 import { useApolloClient } from "@apollo/client";
+import "react-responsive-modal/styles.css";
+import { EditProduct } from "../../components/ui/EditProduct";
 
 interface ProductPageProps {}
 
 const ProductPage: React.FC<ProductPageProps> = ({}) => {
     const [featureEditing, setFeatureEditing] = useState(false);
-    const [suggestions, setSuggestions] = useState("");
+    const [open, setOpen] = useState(false);
     const router = useRouter();
     const id =
         typeof router.query.id == "string" ? parseInt(router.query.id) : -1;
@@ -34,6 +36,11 @@ const ProductPage: React.FC<ProductPageProps> = ({}) => {
             <Navbar />
             {data ? (
                 <>
+                    <EditProduct
+                        open={open}
+                        setOpen={setOpen}
+                        product={data.getProduct}
+                    />
                     <div
                         style={{
                             display: "flex",
@@ -70,6 +77,18 @@ const ProductPage: React.FC<ProductPageProps> = ({}) => {
                                             </p>
                                         ))}
                                     </div>
+                                </div>
+                                <div
+                                    style={{
+                                        marginTop: "20px",
+                                        marginLeft: "auto",
+                                        marginRight: "20px",
+                                        alignSelf: "stretch",
+                                        cursor: "pointer",
+                                    }}
+                                    onClick={() => setOpen(true)}
+                                >
+                                    <p>📝</p>
                                 </div>
                             </div>
                             <p

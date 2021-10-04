@@ -56,7 +56,7 @@
 }
 
 .product_tag {
-    margin-left: 15px;
+    margin: 6px 15px;
     border: 1px solid var(--gray-200);
     padding: 6px;
     border-radius: 4px;

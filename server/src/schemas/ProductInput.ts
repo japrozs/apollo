@@ -9,5 +9,5 @@ export class ProductInput {
     tagLine: string;
 
     @Field()
-    description: string;
+    description?: string;
 }

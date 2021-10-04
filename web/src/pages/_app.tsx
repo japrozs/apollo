@@ -7,6 +7,7 @@ import "../styles/components/ProductCard.css";
 import "../styles/components/NotifCard.css";
 import "../styles/components/Spinner.css";
 import "../styles/components/ReviewComponentBox.css";
+import "../styles/components/EditProduct.css";
 import "../styles/modules/MiddleSection.css";
 import "../styles/modules/RightSection.css";
 import "../styles/modules/LeftSection.css";

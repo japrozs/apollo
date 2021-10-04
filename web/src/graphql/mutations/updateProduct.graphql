@@ -1,0 +1,10 @@
+mutation updateProduct(
+    $id: Int!
+    $tagLine: String!
+    $tags: String!
+    $name: String!
+) {
+    updateProduct(id: $id, tagLine: $tagLine, tags: $tags, name: $name) {
+        ...RegularProductResponse
+    }
+}
