@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --watchAll",
+        "test": "echo \":: no tests are specified ::\"",
         "watch": "tsc -w",
         "build": "tsc",
         "dev": "nodemon dist/index.js",
